@@ -17,7 +17,7 @@ public class StringAnagram {
 
     private static Map<Character, Integer> gistify(String str1) {
         Map<Character, Integer> gist = new HashMap<>();
-        for (char cur: str1.toCharArray()) {
+         for (char cur: str1.toCharArray()) {
             gist.putIfAbsent(cur, 0);
             gist.put(cur, gist.get(cur) + 1);
         }
