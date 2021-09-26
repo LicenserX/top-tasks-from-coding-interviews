@@ -18,36 +18,34 @@ public class PreOrderTreeTraversal {
         integerSet.add(12);
 
 
-        Field fieldM = integerSet.getClass().getDeclaredField("m");
-        fieldM.setAccessible(true);
-        Object objectM = fieldM.get(integerSet);
+        Object objectM = getNonPublicFieldAsObject(integerSet, "m");
         TreeMap<Integer, Object> treeMap = (TreeMap<Integer, Object>) objectM;
 
-        Field fieldRoot = treeMap.getClass().getDeclaredField("root");
-        fieldRoot.setAccessible(true);
-        Object objectRoot = fieldRoot.get(treeMap);
+        Object objectRoot = getNonPublicFieldAsObject(treeMap,"root");
 
-        nlrTraversal(objectRoot);
+        nlrRecursiveTraversal(objectRoot);
     }
 
-    public static void nlrTraversal(Object treeRoot) throws NoSuchFieldException, IllegalAccessException {
+    public static void nlrRecursiveTraversal(Object treeRoot) throws NoSuchFieldException, IllegalAccessException {
         System.out.println(treeRoot);
 
         if (treeRoot == null) {
             return;
         }
 //        System.out.println(treeRoot);
+        Object objectLeft = getNonPublicFieldAsObject(treeRoot,"left");
+        Object objectRight = getNonPublicFieldAsObject(treeRoot,"right");
 
-        Field fieldLeft = treeRoot.getClass().getDeclaredField("left");
-        fieldLeft.setAccessible(true);
-        Object objectLeft = fieldLeft.get(treeRoot);
+        nlrRecursiveTraversal(objectLeft);
+        nlrRecursiveTraversal(objectRight);
+    }
 
-        Field fieldRight = treeRoot.getClass().getDeclaredField("right");
-        fieldRight.setAccessible(true);
-        Object objectRight = fieldRight.get(treeRoot);
 
-        nlrTraversal(objectLeft);
-        nlrTraversal(objectRight);
+    private static Object getNonPublicFieldAsObject(Object source, String nameOfFieldToBeExtracted)
+            throws NoSuchFieldException, IllegalAccessException {
+        Field field = source.getClass().getDeclaredField(nameOfFieldToBeExtracted);
+        field.setAccessible(true);
+        return field.get(source);
     }
 
 
