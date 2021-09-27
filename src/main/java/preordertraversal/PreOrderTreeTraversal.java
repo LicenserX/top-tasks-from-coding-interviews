@@ -54,15 +54,15 @@ public class PreOrderTreeTraversal {
 
             System.out.println(currentNode);
 
-            Object objectRight = getNonPublicFieldAsObject(currentNode,"right");
-            Object objectLeft = getNonPublicFieldAsObject(currentNode,"left");
+            Object rightNode = getNonPublicFieldAsObject(currentNode,"right");
+            Object leftNode = getNonPublicFieldAsObject(currentNode,"left");
 
-            if (objectRight != null) {
-                queue.push(objectRight);
+            if (rightNode != null) {
+                queue.push(rightNode);
             }
 
-            if (objectLeft != null) {
-                queue.push(objectLeft);
+            if (leftNode != null) {
+                queue.push(leftNode);
             }
         }
     }
