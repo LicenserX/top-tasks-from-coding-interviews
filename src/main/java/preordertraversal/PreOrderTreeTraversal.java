@@ -1,9 +1,7 @@
 package preordertraversal;
 
 import java.lang.reflect.Field;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import java.util.*;
 
 public class PreOrderTreeTraversal {
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
@@ -24,20 +22,46 @@ public class PreOrderTreeTraversal {
         Object objectRoot = getNonPublicFieldAsObject(treeMap,"root");
 
         nlrRecursiveTraversal(objectRoot);
+        System.out.println("");
+        nlrTraversal(objectRoot);
+
     }
 
     public static void nlrRecursiveTraversal(Object treeRoot) throws NoSuchFieldException, IllegalAccessException {
-        System.out.println(treeRoot);
+//        System.out.println(treeRoot);
 
         if (treeRoot == null) {
             return;
         }
-//        System.out.println(treeRoot);
+        System.out.println(treeRoot);
         Object objectLeft = getNonPublicFieldAsObject(treeRoot,"left");
         Object objectRight = getNonPublicFieldAsObject(treeRoot,"right");
 
         nlrRecursiveTraversal(objectLeft);
         nlrRecursiveTraversal(objectRight);
+    }
+
+    public static void nlrTraversal(Object treeRoot) throws NoSuchFieldException, IllegalAccessException {
+        Deque<Object> queue = new ArrayDeque<>();
+
+        queue.push(treeRoot);
+
+        while (!queue.isEmpty()) {
+            Object currentNode = queue.pop();
+
+            System.out.println(currentNode);
+
+            Object objectRight = getNonPublicFieldAsObject(currentNode,"right");
+            Object objectLeft = getNonPublicFieldAsObject(currentNode,"left");
+
+            if (objectRight != null) {
+                queue.push(objectRight);
+            }
+
+            if (objectLeft != null) {
+                queue.push(objectLeft);
+            }
+        }
     }
 
 
@@ -47,6 +71,9 @@ public class PreOrderTreeTraversal {
         field.setAccessible(true);
         return field.get(source);
     }
+
+
+
 
 
 /*static final class Entry<K,V> implements Map.Entry<K,V> {
