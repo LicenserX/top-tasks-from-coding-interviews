@@ -1,7 +1,8 @@
 package preordertraversal;
 
-import java.lang.reflect.Field;
 import java.util.*;
+
+import static util.ReflectionUtil.getNonPublicFieldAsObject;
 
 public class PreOrderTreeTraversal {
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
@@ -19,11 +20,11 @@ public class PreOrderTreeTraversal {
         Object objectM = getNonPublicFieldAsObject(integerSet, "m");
         TreeMap<Integer, Object> treeMap = (TreeMap<Integer, Object>) objectM;
 
-        Object objectRoot = getNonPublicFieldAsObject(treeMap,"root");
+        Object treeRoot = getNonPublicFieldAsObject(treeMap,"root");
 
-        nlrRecursiveTraversal(objectRoot);
+        nlrRecursiveTraversal(treeRoot);
         System.out.println("");
-        nlrTraversal(objectRoot);
+        nlrTraversal(treeRoot);
 
     }
 
@@ -33,12 +34,14 @@ public class PreOrderTreeTraversal {
         if (treeRoot == null) {
             return;
         }
-        System.out.println(treeRoot);
-        Object objectLeft = getNonPublicFieldAsObject(treeRoot,"left");
-        Object objectRight = getNonPublicFieldAsObject(treeRoot,"right");
 
-        nlrRecursiveTraversal(objectLeft);
-        nlrRecursiveTraversal(objectRight);
+        System.out.println(treeRoot);
+
+        Object leftNode = getNonPublicFieldAsObject(treeRoot,"left");
+        Object rightNode = getNonPublicFieldAsObject(treeRoot,"right");
+
+        nlrRecursiveTraversal(leftNode);
+        nlrRecursiveTraversal(rightNode);
     }
 
     public static void nlrTraversal(Object treeRoot) throws NoSuchFieldException, IllegalAccessException {
@@ -63,18 +66,6 @@ public class PreOrderTreeTraversal {
             }
         }
     }
-
-
-    private static Object getNonPublicFieldAsObject(Object source, String nameOfFieldToBeExtracted)
-            throws NoSuchFieldException, IllegalAccessException {
-        Field field = source.getClass().getDeclaredField(nameOfFieldToBeExtracted);
-        field.setAccessible(true);
-        return field.get(source);
-    }
-
-
-
-
 
 /*static final class Entry<K,V> implements Map.Entry<K,V> {
         K key;
