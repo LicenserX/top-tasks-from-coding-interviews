@@ -20,6 +20,7 @@ public class InOrderTreeTraversal {
         TreeMap<Integer, Object> treeMap = (TreeMap<Integer, Object>) objectM;
 
         Object treeRoot = getNonPublicFieldAsObject(treeMap,"root");
+
         lnrRecursiveTraversal(treeRoot);
         System.out.println("");
         lnrTraversal(treeRoot);
