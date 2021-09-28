@@ -63,12 +63,12 @@ public class PostOrderTreeTraversal {
 
                 if (rightNode != null) {
                     queue.push(rightNode);
-                    setValueForNonPublicField(currentNode, "right", null);
+                    setValueToNonPublicField(currentNode, "right", null);
                 }
 
                 if (leftNode != null) {
                     queue.push(leftNode);
-                    setValueForNonPublicField(currentNode, "left", null);
+                    setValueToNonPublicField(currentNode, "left", null);
                 }
             }
         }

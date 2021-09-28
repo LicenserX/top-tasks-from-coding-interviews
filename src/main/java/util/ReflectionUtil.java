@@ -13,9 +13,9 @@ public final class ReflectionUtil {
         return field.get(source);
     }
 
-    public static final void setValueForNonPublicField(Object target,
-                                                       String nameOfFieldToBeInjected,
-                                                       Object injectedValue)
+    public static final void setValueToNonPublicField(Object target,
+                                                      String nameOfFieldToBeInjected,
+                                                      Object injectedValue)
             throws NoSuchFieldException, IllegalAccessException {
         Field field = target.getClass().getDeclaredField(nameOfFieldToBeInjected);
         field.setAccessible(true);
