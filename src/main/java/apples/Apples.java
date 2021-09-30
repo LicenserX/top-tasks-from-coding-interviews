@@ -14,8 +14,8 @@ public class Apples {
                 getKgApples(new BigDecimal(19), new BigDecimal(15), new BigDecimal(80))
         );
 
-        System.out.println(
-                "FRESH APPLES: " + getKgApples(new BigDecimal("4.4"), new BigDecimal(80), new BigDecimal(15))
+        System.out.println("FRESH APPLES: " +
+                getKgApples(new BigDecimal("4.4"), new BigDecimal(80), new BigDecimal(15))
         );
 
     }
