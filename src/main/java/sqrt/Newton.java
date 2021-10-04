@@ -31,7 +31,7 @@ public class Newton {
         BigDecimal average = new BigDecimal(BigInteger.ZERO);
         BigDecimal currentApproximation = approximation;
 
-        while (difference.compareTo(precision) != -1) {
+        while (difference.compareTo(precision) > 0) {
             BigDecimal division = value.divide(currentApproximation,6, RoundingMode.HALF_UP);
             average  = currentApproximation.add(division).divide(divider,6, RoundingMode.HALF_UP);
             difference = average.multiply(average).subtract(value);
