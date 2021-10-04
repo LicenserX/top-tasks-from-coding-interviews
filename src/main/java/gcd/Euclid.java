@@ -6,6 +6,7 @@ public class Euclid {
         System.out.println(euclidRecursive(40, 2));
         System.out.println(euclidRecursive(2, 40));
         System.out.println(euclidRecursive(7, 14));
+        System.out.println(euclidRecursive(7, 5));
         System.out.println(euclidPlain(1, 1));
         System.out.println(euclidPlain(40, 2));
         System.out.println(euclidPlain(2, 40));
@@ -18,7 +19,7 @@ public class Euclid {
         if (max % min == 0) {
             return min;
         } else {
-            return euclidRecursive(max, min);
+            return euclidRecursive(max - min, min);
         }
     }
 
