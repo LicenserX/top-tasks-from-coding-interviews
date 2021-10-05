@@ -25,8 +25,8 @@ public class ReverseNumber {
 
         int result =  ints[0] * 10 + ints[1];
 
-        for (int i = 1; i < iteration - 1; i++) {
-            result = result * 10 + ints[i + 1];
+        for (int i = 2; i < iteration; i++) {
+            result = result * 10 + ints[i];
         }
        return result;
     }
